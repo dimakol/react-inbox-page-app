@@ -1,18 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Colors */
+  --color-primary: #0066FF;   /* Primary (buttons, highlights) */
+  --color-text: #1E254F;      /* Main text */
+  --color-divider: #CBD5E0;   /* Borders, separators */
+  --color-placeholder: #3D466E; /* Placeholder text */
+  --color-bg: #FFFFFF;         /* Background */
+  --color-active: #E5F1FF;     /* Active conversation, outgoing message */
+  --color-muted: #718096;      /* Timestamps, secondary text */
+  --color-incoming: #F2F6F9;   /* Incoming message background */
 }
 
 body {
