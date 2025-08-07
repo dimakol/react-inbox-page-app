@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root {
+@theme {
   /* Colors */
   --color-primary: #0066FF;   /* Primary (buttons, highlights) */
   --color-text: #1E254F;      /* Main text */
@@ -12,12 +12,22 @@
   --color-incoming: #F2F6F9;   /* Incoming message background */
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.border-primary {
+  border-color: var(--color-primary)
 }
 
+.text-main {
+  color: var(--color-text)
+}
 
+.border-divider {
+  border-color: var(--color-divider)
+}
+
+.text-placeholder {
+  color: var(--color-placeholder)
+}
+
+.bg-default {
+  background-color: var(--color-bg)
+}
