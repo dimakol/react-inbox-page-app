@@ -13,18 +13,19 @@ function App() {
   return (
     <div className="flex h-screen bg-default">
       {/* Left Sidebar */}
-      <div className="w-80 border-r flex flex-col border-divider"></div>
-      {/* Search */}
-      <div className="p-4 border-b border-divider">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-placeholder" />
-          <CustomInput
-            placeholder="Search"
-            name="search"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="text-main border-divider focus:!border-primary"
-          />
+      <div className="w-80 border-r flex flex-col border-divider">
+        {/* Search */}
+        <div className="p-4 border-b border-divider">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-placeholder" />
+            <CustomInput
+              placeholder="Search"
+              name="search"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="text-main border-divider focus:!border-primary"
+            />
+          </div>
         </div>
       </div>
     </div>
