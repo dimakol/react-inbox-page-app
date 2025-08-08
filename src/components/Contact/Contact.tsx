@@ -2,7 +2,7 @@
 import { Avatar } from "../Avatar";
 // Import types
 import type { ContactProps } from "./Contact.types";
-// Import utils
+// Import utility functions
 import { formatDate } from "../../utils/parseUtils";
 
 /**

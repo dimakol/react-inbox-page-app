@@ -1,7 +1,7 @@
 import React from "react";
 // Import types
 import type { AvatarProps } from "./Avatar.types";
-// Import utils
+// Import utility functions
 import { getInitials } from "../../utils/parseUtils";
 
 /**
