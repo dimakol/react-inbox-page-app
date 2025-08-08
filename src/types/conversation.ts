@@ -3,7 +3,7 @@ export interface Conversation {
   messages: Message[];
 }
 
-interface Message {
+export interface Message {
   timestamp: string;
   sender: "contact" | "me";
   text: string;

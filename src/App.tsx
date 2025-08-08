@@ -1,10 +1,10 @@
 // Import hooks
 import useFetch, { type FetchState } from "./hooks/useFetch";
-// Import types
-import type Contact from "./types/contact";
-import type { Conversation } from "./types/conversation";
 // Import components
-import ContactListPanel from "./components/ContactListPanel/ContactListPanel";
+import { ContactListPanel } from "./components/ContactListPanel";
+// Import types
+import type { Contact } from "./types/contact";
+import type { Conversation } from "./types/conversation";
 
 function App() {
   // Fetch contacts data using custom hook
@@ -34,7 +34,10 @@ function App() {
   return (
     <div className="flex h-screen bg-default">
       {/* Left Sidebar */}
-      <ContactListPanel />
+      <ContactListPanel
+        contacts={contactsData || []}
+        conversations={conversationsData || []}
+      />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-export default interface Contact {
+export interface Contact {
   first_name: string;
   last_name: string;
   city: string;

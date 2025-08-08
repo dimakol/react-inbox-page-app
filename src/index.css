@@ -12,6 +12,10 @@
   --color-incoming: #F2F6F9;   /* Incoming message background */
 }
 
+.bg-primary {
+  background-color: var(--color-primary)
+}
+
 .border-primary {
   border-color: var(--color-primary)
 }
@@ -30,4 +34,12 @@
 
 .bg-default {
   background-color: var(--color-bg)
+}
+
+.bg-active {
+  background-color: var(--color-active)
+}
+
+.text-muted {
+  color: var(--color-muted)
 }
