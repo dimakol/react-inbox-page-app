@@ -17,6 +17,7 @@ function App() {
         {/* Search */}
         <div className="p-4 border-b border-divider">
           <div className="relative">
+            {/* Svg icon  */}
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-placeholder" />
             <CustomInput
               placeholder="Search"
