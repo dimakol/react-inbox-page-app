@@ -5,7 +5,9 @@ import { CustomInput } from "../CustomInput";
 import { Contact } from "../Contact";
 // Import types
 import type { ContactListPanelProps } from "./ContactListPanel.types";
-import type { Conversation, Message } from "../../types/conversation";
+import type { Message } from "../../types/conversation";
+// Import utility functions
+import { getConversationByPhone } from "../../utils/helperUtils";
 
 /**
  * This component is designed to display a list of contacts with search functionality.
@@ -13,6 +15,8 @@ import type { Conversation, Message } from "../../types/conversation";
 const ContactListPanel: React.FC<ContactListPanelProps> = ({
   contacts,
   conversations,
+  selectedPhone,
+  setSelectedPhone,
 }) => {
   // State for search term
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -32,9 +36,10 @@ const ContactListPanel: React.FC<ContactListPanelProps> = ({
 
   // Filter conversations based on filtered contacts
   const filteredConversations = conversations.filter((conversation) => {
-    const filteredPhones = filteredContacts.map((contact) => contact.phone);
     // Match conversations to contacts using the phone number field
-    return filteredPhones.includes(conversation.phone);
+    return filteredContacts.some(
+      (contact) => contact.phone === conversation.phone
+    );
   });
 
   return (
@@ -63,6 +68,8 @@ const ContactListPanel: React.FC<ContactListPanelProps> = ({
       <ContactList
         contacts={filteredContacts}
         conversations={filteredConversations}
+        selectedPhone={selectedPhone}
+        setSelectedPhone={setSelectedPhone}
       />
     </div>
   );
@@ -74,25 +81,20 @@ const ContactListPanel: React.FC<ContactListPanelProps> = ({
 const ContactList: React.FC<ContactListPanelProps> = ({
   contacts,
   conversations,
+  selectedPhone,
+  setSelectedPhone,
 }) => {
-  const [selectedPhone, setSelectedPhone] = useState<string | null>(null);
-
-  const getConversationByPhone = (phone: string): Conversation | undefined => {
-    return conversations.find((conversation) => conversation.phone === phone);
-  };
-
   const getLastMessage = (messages: Message[]): Message => {
     return messages[messages.length - 1];
-  };
-
-  const setSelectedContactPhone = (phone: string): void => {
-    setSelectedPhone(phone);
   };
 
   return (
     <div className="flex-1 overflow-y-auto">
       {contacts.map((contact) => {
-        const conversation = getConversationByPhone(contact.phone);
+        const conversation = getConversationByPhone(
+          contact.phone,
+          conversations
+        );
         let lastMessage = null;
         if (conversation) {
           lastMessage = getLastMessage(conversation.messages);
@@ -104,7 +106,7 @@ const ContactList: React.FC<ContactListPanelProps> = ({
             contact={contact}
             lastMessage={lastMessage}
             isSelected={selectedPhone === contact.phone}
-            setSelectedPhone={setSelectedContactPhone}
+            setSelectedPhone={setSelectedPhone}
           />
         );
       })}
