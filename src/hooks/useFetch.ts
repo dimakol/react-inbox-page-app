@@ -6,6 +6,14 @@ export interface FetchState<T> {
   error: Error | null;
 }
 
+/**
+ * The useFetch hook in React is a custom hook designed to simplify and encapsulate the logic for fetching data from an API.
+ * It leverages built-in React hooks like useState and useEffect to manage the state of the data,
+ * loading status, and potential errors during the fetching process.
+ * @param url The URL to fetch data from
+ * @param options Optional request options to customize the fetch request (e.g., method, headers, body, mode, cache, credentials).
+ * @returns { data, loading, error } or abort signal.
+ */
 const useFetch = <T>(url: string, options?: RequestInit): FetchState<T> => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
