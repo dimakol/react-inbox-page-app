@@ -18,7 +18,7 @@ const Contact: React.FC<ContactProps> = ({
     <div
       key={contact.phone}
       onClick={() => setSelectedPhone(contact.phone)}
-      className={`flex items-center m-2 p-4 rounded-lg cursor-pointer hover:bg-gray-100 ${
+      className={`flex items-center m-2 p-4 rounded-lg cursor-pointer hover:bg-divider ${
         isSelected ? "bg-active" : ""
       }`}
     >
