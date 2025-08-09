@@ -1,4 +1,5 @@
 import React from "react";
+// Import types
 import type { CustomInputProps } from "./CustomInput.types";
 
 const CustomInput: React.FC<CustomInputProps> = ({
