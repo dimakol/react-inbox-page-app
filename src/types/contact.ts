@@ -7,3 +7,4 @@ export interface Contact {
 
 export type ContactFullName = Pick<Contact, "first_name" | "last_name">;
 export type ContactPhone = Pick<Contact, "phone">;
+export type PhoneType = ContactPhone["phone"];
