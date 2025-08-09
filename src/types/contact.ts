@@ -4,3 +4,5 @@ export interface Contact {
   city: string;
   phone: string;
 }
+
+export type ContactFullName = Pick<Contact, "first_name" | "last_name">;

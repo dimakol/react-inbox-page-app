@@ -13,7 +13,7 @@ const ConversationHeader: React.FC<ConversationHeaderProps> = ({
 }) => {
   return (
     <div className="flex items-center p-3 border-b border-divider bg-default">
-      <Avatar firstName={first_name} lastName={last_name} />
+      <Avatar first_name={first_name} last_name={last_name} />
       <div>
         <h2 className="text-main text-lg font-semibold">
           {first_name} {last_name}

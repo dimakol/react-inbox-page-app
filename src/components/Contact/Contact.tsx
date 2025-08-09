@@ -22,7 +22,7 @@ const Contact: React.FC<ContactProps> = ({
         isSelected ? "bg-active" : ""
       }`}
     >
-      <Avatar firstName={contact.first_name} lastName={contact.last_name} />
+      <Avatar first_name={contact.first_name} last_name={contact.last_name} />
 
       <div className="flex-1 min-w-0">
         {/* Full name */}
