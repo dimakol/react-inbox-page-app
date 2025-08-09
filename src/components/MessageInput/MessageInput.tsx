@@ -1,10 +1,23 @@
 import { Send } from "lucide-react";
 import { useState } from "react";
+// Import components
+import { PlaceholderButton } from "../PlaceholderButton";
 // Import types
+import type { Contact, PlaceholderKey } from "../../types/contact";
 import { type Message, Sender } from "../../types/conversation";
 import type { MessageInputProps } from "./MessageInput.types";
 // Import utility functions
 import { replacePlaceholders } from "../../utils/parseUtils";
+
+// Create a sample object to extract keys from
+const contactTemplate: Contact = {
+  first_name: "",
+  last_name: "",
+  city: "",
+  phone: "",
+};
+
+const placeholderKeys = Object.keys(contactTemplate) as PlaceholderKey[];
 
 /**
  * This component is designed to display a message input box.
@@ -22,6 +35,11 @@ const MessageInput: React.FC<MessageInputProps> = ({
     event: React.ChangeEvent<HTMLTextAreaElement>
   ): void => {
     setNewMessage(event.target.value);
+  };
+
+  // Function to add placeholder to the message
+  const addPlaceholder = (placeholder: PlaceholderKey): void => {
+    setNewMessage((prev) => prev + `[${placeholder}]`);
   };
 
   const handleKeyDown = (
@@ -51,26 +69,42 @@ const MessageInput: React.FC<MessageInputProps> = ({
 
   return (
     <div className="p-4 border-t border-divider bg-default">
-      <div className="flex items-end space-x-2">
-        <div className="flex-1">
-          <textarea
-            name="message-input-box"
-            value={newMessage}
-            onChange={handleMessageChange}
-            onKeyDown={handleKeyDown}
-            placeholder="Write something..."
-            className="w-full px-4 py-3 border border-divider rounded-lg resize-none focus:outline-none focus:!border-primary text-main"
-            rows={1}
-          />
-        </div>
+      <div className="border border-divider rounded-lg focus-within:!border-primary">
+        <textarea
+          name="message-input-box"
+          value={newMessage}
+          onChange={handleMessageChange}
+          onKeyDown={handleKeyDown}
+          placeholder="Write something..."
+          className="w-full px-4 py-3 resize-none focus:outline-none rounded-lg text-main"
+          rows={2}
+        />
 
-        <button
-          onClick={handleSendMessage}
-          disabled={!newMessage.trim()}
-          className="p-3 rounded-lg bg-primary text-default disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <Send className="w-5 h-5" />
-        </button>
+        {/* Bottom section with placeholder buttons and send button */}
+        <div className="flex items-center justify-between px-4 py-3 border-t border-divider">
+          {/* Placeholder buttons */}
+          <div className="flex items-center gap-2">
+            {placeholderKeys.map((placeholder: PlaceholderKey) => {
+              const isInMessage = newMessage.includes(`[${placeholder}]`);
+              return (
+                <PlaceholderButton
+                  key={placeholder}
+                  placeholder={placeholder}
+                  isInMessage={isInMessage}
+                  addPlaceholder={addPlaceholder}
+                />
+              );
+            })}
+          </div>
+
+          <button
+            onClick={handleSendMessage}
+            disabled={!newMessage.trim()}
+            className="p-2 rounded-lg bg-primary text-default disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <Send className="w-4 h-4" />
+          </button>
+        </div>
       </div>
     </div>
   );
