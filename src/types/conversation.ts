@@ -1,5 +1,6 @@
-export interface Conversation {
-  phone: string;
+import type { ContactPhone } from "./contact";
+
+export interface Conversation extends ContactPhone {
   messages: Message[];
 }
 
