@@ -23,7 +23,7 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
             messagesAmount={messages.length}
           />
 
-          <Conversation messages={messages} />
+          <Conversation messages={messages} contact={contact} />
 
           <MessageInput contact={contact} appendMessage={appendMessage} />
         </>

@@ -10,9 +10,9 @@ import { isSameDate } from "../../utils/parseUtils";
 /**
  * This component is designed to display the conversation messages.
  */
-const Conversation: React.FC<Pick<ConversationPanelProps, "messages">> = ({
-  messages,
-}) => {
+const Conversation: React.FC<
+  Pick<ConversationPanelProps, "messages" | "contact">
+> = ({ messages, contact }) => {
   return (
     <div className="flex-1 overflow-y-auto p-4 space-y-4">
       {messages.map((message: Message, index: number) => {
@@ -26,7 +26,7 @@ const Conversation: React.FC<Pick<ConversationPanelProps, "messages">> = ({
               <DateSeparator timestamp={message.timestamp} />
             )}
 
-            <MessageBubble {...message} />
+            <MessageBubble {...message} contact={contact} />
           </div>
         );
       })}
