@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import { Search } from "lucide-react";
 // Import components
 import { CustomInput } from "../CustomInput";
-import { Contact } from "../Contact";
+import { ContactList } from "../ContactList";
 // Import types
 import type { ContactListPanelProps } from "./ContactListPanel.types";
-import type { Message } from "../../types/conversation";
-// Import utility functions
-import { getConversationByPhone } from "../../utils/helperUtils";
 
 /**
  * This component is designed to display a list of contacts with search functionality.
@@ -71,45 +68,6 @@ const ContactListPanel: React.FC<ContactListPanelProps> = ({
         selectedPhone={selectedPhone}
         setSelectedPhone={setSelectedPhone}
       />
-    </div>
-  );
-};
-
-/**
- * This component is designed to display a list of contacts.
- */
-const ContactList: React.FC<ContactListPanelProps> = ({
-  contacts,
-  conversations,
-  selectedPhone,
-  setSelectedPhone,
-}) => {
-  const getLastMessage = (messages: Message[]): Message => {
-    return messages[messages.length - 1];
-  };
-
-  return (
-    <div className="flex-1 overflow-y-auto">
-      {contacts.map((contact) => {
-        const conversation = getConversationByPhone(
-          contact.phone,
-          conversations
-        );
-        let lastMessage = null;
-        if (conversation) {
-          lastMessage = getLastMessage(conversation.messages);
-        }
-
-        return (
-          <Contact
-            key={contact.phone}
-            contact={contact}
-            lastMessage={lastMessage}
-            isSelected={selectedPhone === contact.phone}
-            setSelectedPhone={setSelectedPhone}
-          />
-        );
-      })}
     </div>
   );
 };
