@@ -39,7 +39,15 @@ const MessageInput: React.FC<MessageInputProps> = ({
 
   // Function to add placeholder to the message
   const addPlaceholder = (placeholder: PlaceholderKey): void => {
-    setNewMessage((prev) => prev + `[${placeholder}]`);
+    const placeholderText = `[${placeholder}]`;
+
+    if (newMessage.includes(placeholderText)) {
+      // Remove all instances of this placeholder
+      setNewMessage((prev) => prev.split(placeholderText).join(""));
+    } else {
+      // Add the placeholder
+      setNewMessage((prev) => prev + placeholderText);
+    }
   };
 
   const handleKeyDown = (
