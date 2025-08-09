@@ -1,3 +1,5 @@
+import type { Contact } from "../types/contact";
+
 /**
  * Get the initials of a person from their first and last name.
  * @param firstName The first name of the person.
@@ -53,4 +55,20 @@ export const isSameDate = (timestamp1: string, timestamp2: string): boolean => {
   const d1 = new Date(timestamp1);
   const d2 = new Date(timestamp2);
   return d1.toDateString() === d2.toDateString();
+};
+
+/**
+ * Replace placeholders with actual contact data
+ * @param text - The text to replace placeholders in
+ * @param contact - The contact object
+ * @returns modified text with replaced placeholders
+ */
+export const replacePlaceholders = (text: string, contact: Contact): string => {
+  if (!contact) return text;
+
+  return text
+    .replace(/\[first_name\]/g, contact.first_name)
+    .replace(/\[last_name\]/g, contact.last_name)
+    .replace(/\[city\]/g, contact.city)
+    .replace(/\[phone\]/g, contact.phone);
 };

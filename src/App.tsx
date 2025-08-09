@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // Import hooks
 import useFetch, { type FetchState } from "./hooks/useFetch";
 // Import components
@@ -6,7 +6,7 @@ import { ContactListPanel } from "./components/ContactListPanel";
 import { ConversationPanel } from "./components/ConversationPanel";
 // Import types
 import type { Contact } from "./types/contact";
-import type { Conversation } from "./types/conversation";
+import type { Conversation, Message } from "./types/conversation";
 // Import utility functions
 import { getContactByPhone, getConversationByPhone } from "./utils/helperUtils";
 
@@ -25,7 +25,26 @@ function App() {
     error: conversationsError,
   }: FetchState<Conversation[]> = useFetch("data/conversations.json");
 
+  const [conversations, setConversations] = useState<Conversation[] | null>(
+    null
+  );
   const [selectedPhone, setSelectedPhone] = useState<string | null>(null);
+
+  useEffect(() => {
+    setConversations(conversationsData);
+  }, [conversationsData]);
+
+  // Function to append a new message to the selected conversation
+  const appendMessage = (newMsg: Message): void => {
+    setConversations((prevConversations: Conversation[] | null) => {
+      if (!prevConversations) return null; // handle the case where prevState is null
+      return prevConversations.map((conversation: Conversation) =>
+        conversation.phone === selectedPhone
+          ? { ...conversation, messages: [...conversation.messages, newMsg] }
+          : conversation
+      );
+    });
+  };
 
   const setSelectedContactPhone = (phone: string): void => {
     setSelectedPhone(phone);
@@ -45,7 +64,7 @@ function App() {
     ? getContactByPhone(selectedPhone, contactsData || [])
     : null;
   const selectedConversation = selectedPhone
-    ? getConversationByPhone(selectedPhone, conversationsData || [])
+    ? getConversationByPhone(selectedPhone, conversations || [])
     : null;
 
   return (
@@ -53,7 +72,7 @@ function App() {
       {/* Left Sidebar */}
       <ContactListPanel
         contacts={contactsData || []}
-        conversations={conversationsData || []}
+        conversations={conversations || []}
         selectedPhone={selectedPhone}
         setSelectedPhone={setSelectedContactPhone}
       />
@@ -61,6 +80,7 @@ function App() {
       <ConversationPanel
         contact={selectedContact}
         messages={selectedConversation?.messages || []}
+        appendMessage={appendMessage}
       />
     </div>
   );

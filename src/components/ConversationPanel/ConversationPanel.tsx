@@ -1,6 +1,7 @@
 // Import components
 import { ConversationHeader } from "../ConversationHeader";
 import { Conversation } from "../Conversation";
+import { MessageInput } from "../MessageInput";
 // Import types
 import type { ConversationPanelProps } from "./ConversationPanel.types";
 
@@ -11,6 +12,7 @@ import type { ConversationPanelProps } from "./ConversationPanel.types";
 const ConversationPanel: React.FC<ConversationPanelProps> = ({
   contact,
   messages,
+  appendMessage,
 }) => {
   return (
     <div className="flex-1 flex flex-col">
@@ -22,6 +24,8 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
           />
 
           <Conversation messages={messages} />
+
+          <MessageInput contact={contact} appendMessage={appendMessage} />
         </>
       ) : (
         <div className="flex-1 flex items-center justify-center text-placeholder">

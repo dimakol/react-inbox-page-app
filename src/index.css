@@ -40,6 +40,10 @@
   background-color: var(--color-bg)
 }
 
+.text-default {
+  color: var(--color-bg)
+}
+
 .bg-active {
   background-color: var(--color-active)
 }
