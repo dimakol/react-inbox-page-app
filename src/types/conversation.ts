@@ -6,8 +6,13 @@ export interface Conversation extends ContactPhone {
 
 export interface Message {
   timestamp: string;
-  sender: "contact" | "me";
+  sender: (typeof Sender)[keyof typeof Sender];
   text: string;
 }
 
 export type MessageTimestamp = Pick<Message, "timestamp">;
+
+export const Sender = {
+  Contact: "contact",
+  Me: "me",
+} as const;

@@ -34,7 +34,7 @@ export const formatDate = (timestamp: string): string => {
  * @param timestamp The timestamp to format.
  * @returns A string representing the formatted time with following format: HH:MM
  */
-const formatTime = (timestamp: string): string => {
+export const formatTime = (timestamp: string): string => {
   const date = new Date(timestamp);
   return date.toLocaleTimeString("en-US", {
     hour: "2-digit",

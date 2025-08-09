@@ -1,5 +1,6 @@
 // Import components
 import { DateSeparator } from "../DateSeparator";
+import { MessageBubble } from "../MessageBubble";
 // Import types
 import type { ConversationPanelProps } from "../ConversationPanel";
 import type { Message } from "../../types/conversation";
@@ -21,10 +22,11 @@ const Conversation: React.FC<Pick<ConversationPanelProps, "messages">> = ({
 
         return (
           <div key={index}>
-            {/* Date separator */}
             {isFirstMessageOfDay && (
               <DateSeparator timestamp={message.timestamp} />
             )}
+
+            <MessageBubble {...message} />
           </div>
         );
       })}

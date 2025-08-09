@@ -47,3 +47,7 @@
 .text-muted {
   color: var(--color-muted)
 }
+
+.bg-incoming {
+  background-color: var(--color-incoming)
+}
