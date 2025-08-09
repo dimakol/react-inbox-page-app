@@ -12,7 +12,7 @@ const ConversationHeader: React.FC<ConversationHeaderProps> = ({
   ...contact
 }) => {
   return (
-    <div className="flex items-center p-4 border-b border-divider bg-default">
+    <div className="flex items-center p-3 border-b border-divider bg-default">
       <Avatar firstName={contact.first_name} lastName={contact.last_name} />
       <div>
         <h2 className="text-main text-lg font-semibold">
