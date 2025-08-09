@@ -1,69 +1,77 @@
-# React + TypeScript + Vite
+# Inbox Page App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Messaging application that includes:
 
-Currently, two official plugins are available:
+- Contact List
+- Conversation
+- Sending a Message
+- Search Functionality
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Screenshots
 
-## Expanding the ESLint configuration
+![image](screenshots/image1.png?raw=true "Image of active conversation")
+![image](screenshots/image2.png?raw=true "Image of conversation with placeholders")
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech/framework used
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- [ReactJS](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vite](https://vite.dev/)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Data Integration - Fetch JSON data from files into the component
+- Left Sidebar - Contact List
+  - Displays full name, last message preview, and timestamp
+  - Clicking highlights the selected conversation
+  - Shows conversation count at the top
+  - Responsive design with proper avatars (initials)
+- Right Panel - Conversation
+  - Shows contact name, avatar with initials, and total number of messages
+  - Message bubbles with proper alignment (right for outgoing, left for incoming)
+  - Date separators between different days
+  - Timestamps for each message
+  - Scrolls automatically to newest messages
+- Message Sending
+  - Text area input at the bottom
+  - Send button
+  - Enter key support for sending
+  - Placeholder replacement system with buttons for easy insertion
+- Search Functionality
+  - Real-time filtering by name or phone number
+  - Case-insensitive search
+  - Updates contact list dynamically
+- Placeholder System
+  - Support for contact properties
+  - Convenient buttons to insert placeholders
+  - Automatic replacement when sending messages
+
+## Installation
+
+**Running Locally**
+
+git, pnpm and node softwares should be installed before moving on
+
+```bash
+git clone https://github.com/dimakol/react-inbox-page-app.git
+cd react-inbox-page-app
+pnpm install
+pnpm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**Building for production**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm run build
 ```
+
+## Deployed to Github pages
+
+https://dimakol.github.io/react-inbox-page-app/
+
+## License
+
+(The MIT License)
+
+Copyright © 2025 Dmitry Kolyas
