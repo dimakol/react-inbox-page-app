@@ -9,3 +9,5 @@ export interface Message {
   sender: "contact" | "me";
   text: string;
 }
+
+export type MessageTimestamp = Pick<Message, "timestamp">;

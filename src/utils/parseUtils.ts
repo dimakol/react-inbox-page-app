@@ -42,3 +42,15 @@ const formatTime = (timestamp: string): string => {
     hour12: false,
   });
 };
+
+/**
+ * Checks if two timestamps are on the same date.
+ * @param timestamp1 The first timestamp to compare.
+ * @param timestamp2 The second timestamp to compare.
+ * @returns True if the timestamps are on the same date, false otherwise.
+ */
+export const isSameDate = (timestamp1: string, timestamp2: string): boolean => {
+  const d1 = new Date(timestamp1);
+  const d2 = new Date(timestamp2);
+  return d1.toDateString() === d2.toDateString();
+};

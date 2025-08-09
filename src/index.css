@@ -24,6 +24,10 @@
   color: var(--color-text)
 }
 
+.bg-divider {
+  background-color: var(--color-divider)
+}
+
 .border-divider {
   border-color: var(--color-divider)
 }
